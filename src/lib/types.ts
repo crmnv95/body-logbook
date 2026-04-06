@@ -22,20 +22,20 @@ export interface LogEntry {
 }
 
 export const ACTIVITY_LEVELS = [
-  { label: "Sedentary", factor: 1.2 },
-  { label: "Lightly active", factor: 1.375 },
-  { label: "Moderately active", factor: 1.55 },
-  { label: "Very active", factor: 1.725 },
+  { label: "Sedentario", factor: 1.2 },
+  { label: "Ligeramente activo", factor: 1.375 },
+  { label: "Moderadamente activo", factor: 1.55 },
+  { label: "Muy activo", factor: 1.725 },
 ] as const;
 
 export const MEASUREMENT_FIELDS = [
-  { key: "chest", label: "Chest" },
-  { key: "waist", label: "Waist" },
-  { key: "hips", label: "Hips" },
-  { key: "thigh", label: "Thigh" },
-  { key: "bicep", label: "Bicep" },
-  { key: "neck", label: "Neck" },
-  { key: "waist2", label: "Waist 2" },
+  { key: "chest", label: "Pecho" },
+  { key: "waist", label: "Cintura" },
+  { key: "hips", label: "Cadera" },
+  { key: "thigh", label: "Muslo" },
+  { key: "bicep", label: "Bícep" },
+  { key: "neck", label: "Cuello" },
+  { key: "waist2", label: "Cintura 2" },
 ] as const;
 
 export function calcBMR(weight: number, height: number, age: number, sex: "male" | "female") {
@@ -57,6 +57,27 @@ export function calcFatMass(weight: number, bodyFat: number) {
 
 export function calcLeanMass(weight: number, fatMass: number) {
   return weight - fatMass;
+}
+
+// US Navy method body fat % calculation
+export function calcBodyFatNavy(
+  sex: "male" | "female",
+  waist: number,
+  neck: number,
+  height: number,
+  hips: number
+): number {
+  if (waist <= 0 || neck <= 0 || height <= 0) return 0;
+  if (sex === "male") {
+    const diff = waist - neck;
+    if (diff <= 0) return 0;
+    return 495 / (1.0324 - 0.19077 * Math.log10(diff) + 0.15456 * Math.log10(height)) - 450;
+  } else {
+    if (hips <= 0) return 0;
+    const diff = waist + hips - neck;
+    if (diff <= 0) return 0;
+    return 495 / (1.29579 - 0.35004 * Math.log10(diff) + 0.22100 * Math.log10(height)) - 450;
+  }
 }
 
 export const DEFAULT_PROFILE: Profile = {

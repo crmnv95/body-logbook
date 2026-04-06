@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { LogEntry, MEASUREMENT_FIELDS } from "@/lib/types";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from "recharts";
 import { Switch } from "@/components/ui/switch";
 import { Label } from "@/components/ui/label";
 
@@ -28,14 +28,14 @@ export default function ProgressCharts({ logs }: Props) {
     return (
       <Card>
         <CardContent className="py-12 text-center text-muted-foreground">
-          No data to chart yet.
+          Aún no hay datos para graficar.
         </CardContent>
       </Card>
     );
   }
 
   const data = logs.map((l) => ({
-    date: new Date(l.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short" }),
+    date: new Date(l.date).toLocaleDateString("es-ES", { day: "2-digit", month: "short" }),
     weight: l.weight,
     bodyFat: l.bodyFat,
     chest: l.chest,
@@ -48,8 +48,8 @@ export default function ProgressCharts({ logs }: Props) {
   }));
 
   const toggles = [
-    { key: "weight", label: "Weight (kg)" },
-    { key: "bodyFat", label: "Body Fat %" },
+    { key: "weight", label: "Peso (kg)" },
+    { key: "bodyFat", label: "% Grasa" },
     ...MEASUREMENT_FIELDS.map((f) => ({ key: f.key, label: `${f.label} (cm)` })),
   ];
 
@@ -57,7 +57,7 @@ export default function ProgressCharts({ logs }: Props) {
     <div className="space-y-4">
       <Card>
         <CardHeader>
-          <CardTitle className="text-sm">Toggle Metrics</CardTitle>
+          <CardTitle className="text-sm">Alternar Métricas</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
@@ -75,10 +75,10 @@ export default function ProgressCharts({ logs }: Props) {
       </Card>
 
       {visible.weight && (
-        <ChartCard title="Weight (kg)" data={data} dataKey="weight" color={COLORS[0]} />
+        <ChartCard title="Peso (kg)" data={data} dataKey="weight" color={COLORS[0]} />
       )}
       {visible.bodyFat && (
-        <ChartCard title="Body Fat %" data={data} dataKey="bodyFat" color={COLORS[1]} />
+        <ChartCard title="% Grasa Corporal" data={data} dataKey="bodyFat" color={COLORS[1]} />
       )}
 
       {MEASUREMENT_FIELDS.filter((f) => visible[f.key]).map((f, i) => (

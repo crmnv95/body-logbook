@@ -22,7 +22,7 @@ export default function BeforeAfter({ logs }: Props) {
     return (
       <Card>
         <CardContent className="py-12 text-center text-muted-foreground">
-          You need at least 2 entries with photos to compare.
+          Necesitas al menos 2 registros con fotos para comparar.
         </CardContent>
       </Card>
     );
@@ -40,30 +40,30 @@ export default function BeforeAfter({ logs }: Props) {
     <div className="space-y-4">
       <Card>
         <CardHeader>
-          <CardTitle className="text-sm">Select Dates to Compare</CardTitle>
+          <CardTitle className="text-sm">Seleccionar Fechas para Comparar</CardTitle>
         </CardHeader>
         <CardContent className="grid grid-cols-2 gap-4">
           <div>
-            <Label className="text-xs">Before</Label>
+            <Label className="text-xs">Antes</Label>
             <Select value={beforeId} onValueChange={setBeforeId}>
-              <SelectTrigger><SelectValue placeholder="Select date" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Seleccionar fecha" /></SelectTrigger>
               <SelectContent>
                 {photosLogs.map((l) => (
                   <SelectItem key={l.id} value={l.id}>
-                    {new Date(l.date).toLocaleDateString()} — {l.weight} kg
+                    {new Date(l.date).toLocaleDateString("es-ES")} — {l.weight} kg
                   </SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
           <div>
-            <Label className="text-xs">After</Label>
+            <Label className="text-xs">Después</Label>
             <Select value={afterId} onValueChange={setAfterId}>
-              <SelectTrigger><SelectValue placeholder="Select date" /></SelectTrigger>
+              <SelectTrigger><SelectValue placeholder="Seleccionar fecha" /></SelectTrigger>
               <SelectContent>
                 {photosLogs.map((l) => (
                   <SelectItem key={l.id} value={l.id}>
-                    {new Date(l.date).toLocaleDateString()} — {l.weight} kg
+                    {new Date(l.date).toLocaleDateString("es-ES")} — {l.weight} kg
                   </SelectItem>
                 ))}
               </SelectContent>
@@ -76,7 +76,7 @@ export default function BeforeAfter({ logs }: Props) {
         <>
           <Card>
             <CardHeader>
-              <CardTitle className="text-sm">Photo Slider Comparison</CardTitle>
+              <CardTitle className="text-sm">Comparación con Deslizador</CardTitle>
             </CardHeader>
             <CardContent>
               <div
@@ -86,9 +86,9 @@ export default function BeforeAfter({ logs }: Props) {
                 onMouseDown={handleSlider}
                 onTouchMove={handleSlider}
               >
-                <img src={after.photo} alt="After" className="absolute inset-0 w-full h-full object-cover" />
+                <img src={after.photo} alt="Después" className="absolute inset-0 w-full h-full object-cover" />
                 <div className="absolute inset-0 overflow-hidden" style={{ width: `${sliderPos}%` }}>
-                  <img src={before.photo} alt="Before" className="absolute inset-0 w-full h-full object-cover" style={{ minWidth: containerRef.current?.offsetWidth }} />
+                  <img src={before.photo} alt="Antes" className="absolute inset-0 w-full h-full object-cover" style={{ minWidth: containerRef.current?.offsetWidth }} />
                 </div>
                 <div
                   className="absolute top-0 bottom-0 w-0.5 bg-primary-foreground shadow-lg"
@@ -103,8 +103,8 @@ export default function BeforeAfter({ logs }: Props) {
           </Card>
 
           <div className="grid grid-cols-2 gap-4">
-            <ComparisonCard label="Before" entry={before} />
-            <ComparisonCard label="After" entry={after} />
+            <ComparisonCard label="Antes" entry={before} />
+            <ComparisonCard label="Después" entry={after} />
           </div>
         </>
       )}
@@ -119,9 +119,9 @@ function ComparisonCard({ label, entry }: { label: string; entry: LogEntry }) {
         <CardTitle className="text-sm">{label}</CardTitle>
       </CardHeader>
       <CardContent className="space-y-1 text-sm">
-        <div className="text-muted-foreground">{new Date(entry.date).toLocaleDateString()}</div>
-        <div><strong>Weight:</strong> {entry.weight} kg</div>
-        <div><strong>Body Fat:</strong> {entry.bodyFat}%</div>
+        <div className="text-muted-foreground">{new Date(entry.date).toLocaleDateString("es-ES")}</div>
+        <div><strong>Peso:</strong> {entry.weight} kg</div>
+        <div><strong>% Grasa:</strong> {entry.bodyFat}%</div>
         {MEASUREMENT_FIELDS.map((f) => (
           <div key={f.key}>
             <strong>{f.label}:</strong> {entry[f.key as keyof LogEntry] as number} cm

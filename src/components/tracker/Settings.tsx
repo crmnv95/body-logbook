@@ -19,34 +19,34 @@ export default function Settings({ profile, onUpdate }: Props) {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <SettingsIcon className="h-5 w-5" /> Profile Settings
+          <SettingsIcon className="h-5 w-5" /> Configuración del Perfil
         </CardTitle>
       </CardHeader>
       <CardContent className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <div>
-            <Label>Height (cm)</Label>
+            <Label>Altura (cm)</Label>
             <Input type="number" value={profile.height} onChange={(e) => update("height", parseFloat(e.target.value) || 0)} />
           </div>
           <div>
-            <Label>Age (years)</Label>
+            <Label>Edad (años)</Label>
             <Input type="number" value={profile.age} onChange={(e) => update("age", parseInt(e.target.value) || 0)} />
           </div>
         </div>
 
         <div>
-          <Label>Sex</Label>
+          <Label>Sexo</Label>
           <Select value={profile.sex} onValueChange={(v) => update("sex", v)}>
             <SelectTrigger><SelectValue /></SelectTrigger>
             <SelectContent>
-              <SelectItem value="male">Male</SelectItem>
-              <SelectItem value="female">Female</SelectItem>
+              <SelectItem value="male">Masculino</SelectItem>
+              <SelectItem value="female">Femenino</SelectItem>
             </SelectContent>
           </Select>
         </div>
 
         <div>
-          <Label>Activity Level</Label>
+          <Label>Nivel de Actividad</Label>
           <Select value={String(profile.activityLevel)} onValueChange={(v) => update("activityLevel", parseFloat(v))}>
             <SelectTrigger><SelectValue /></SelectTrigger>
             <SelectContent>
@@ -60,9 +60,9 @@ export default function Settings({ profile, onUpdate }: Props) {
         </div>
 
         <div>
-          <Label>Calorie Deficit (kcal/day)</Label>
+          <Label>Déficit Calórico (kcal/día)</Label>
           <Input type="number" value={profile.deficit} onChange={(e) => update("deficit", parseInt(e.target.value) || 0)} />
-          <p className="text-xs text-muted-foreground mt-1">Use negative value (e.g. −500) to lose weight</p>
+          <p className="text-xs text-muted-foreground mt-1">Usa un valor negativo (ej. −500) para perder peso</p>
         </div>
       </CardContent>
     </Card>

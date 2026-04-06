@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTrackerData } from "@/hooks/useTrackerData";
 import LogEntryForm from "@/components/tracker/LogEntryForm";
@@ -15,18 +14,18 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       <header className="border-b border-border px-4 py-3">
-        <h1 className="text-xl font-bold text-foreground">Body Progress Tracker</h1>
+        <h1 className="text-xl font-bold text-foreground">Seguimiento de Progreso Corporal</h1>
       </header>
 
       <main className="max-w-4xl mx-auto p-4">
         <Tabs defaultValue="log" className="space-y-4">
           <TabsList className="flex flex-wrap h-auto gap-1">
-            <TabsTrigger value="log" className="gap-1 text-xs"><ClipboardList className="h-3.5 w-3.5" /> Log</TabsTrigger>
-            <TabsTrigger value="dashboard" className="gap-1 text-xs"><LayoutDashboard className="h-3.5 w-3.5" /> Dashboard</TabsTrigger>
-            <TabsTrigger value="charts" className="gap-1 text-xs"><LineChart className="h-3.5 w-3.5" /> Charts</TabsTrigger>
-            <TabsTrigger value="photos" className="gap-1 text-xs"><Image className="h-3.5 w-3.5" /> Photos</TabsTrigger>
-            <TabsTrigger value="compare" className="gap-1 text-xs"><GitCompare className="h-3.5 w-3.5" /> Before & After</TabsTrigger>
-            <TabsTrigger value="settings" className="gap-1 text-xs"><SettingsIcon className="h-3.5 w-3.5" /> Settings</TabsTrigger>
+            <TabsTrigger value="log" className="gap-1 text-xs"><ClipboardList className="h-3.5 w-3.5" /> Registro</TabsTrigger>
+            <TabsTrigger value="dashboard" className="gap-1 text-xs"><LayoutDashboard className="h-3.5 w-3.5" /> Panel</TabsTrigger>
+            <TabsTrigger value="charts" className="gap-1 text-xs"><LineChart className="h-3.5 w-3.5" /> Gráficas</TabsTrigger>
+            <TabsTrigger value="photos" className="gap-1 text-xs"><Image className="h-3.5 w-3.5" /> Fotos</TabsTrigger>
+            <TabsTrigger value="compare" className="gap-1 text-xs"><GitCompare className="h-3.5 w-3.5" /> Antes y Después</TabsTrigger>
+            <TabsTrigger value="settings" className="gap-1 text-xs"><SettingsIcon className="h-3.5 w-3.5" /> Ajustes</TabsTrigger>
           </TabsList>
 
           <TabsContent value="log">
